@@ -18,41 +18,41 @@ namespace VotingAPI.Controllers
         private VotingAPIContext db = new VotingAPIContext();
 
         // GET: api/Votes
-        public IQueryable<Votes> GetVotes()
+        public IQueryable<Vote> GetVotes()
         {
             return db.Votes;
         }
 
 
         // POST: api/Votes
-        [ResponseType(typeof(Votes))]
-        public IHttpActionResult PostVotes(Votes votes)
+        [ResponseType(typeof(Vote))]
+        public IHttpActionResult PostVotes(Vote vote)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Votes.Add(votes);
+            db.Votes.Add(vote);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = votes.Id }, votes);
+            return CreatedAtRoute("DefaultApi", new { id = vote.Id }, vote);
         }
 
         // DELETE: api/Votes/5
-        [ResponseType(typeof(Votes))]
+        [ResponseType(typeof(Vote))]
         public IHttpActionResult DeleteVotes(int id)
         {
-            Votes votes = db.Votes.Find(id);
-            if (votes == null)
+            Vote vote = db.Votes.Find(id);
+            if (vote == null)
             {
                 return NotFound();
             }
 
-            db.Votes.Remove(votes);
+            db.Votes.Remove(vote);
             db.SaveChanges();
 
-            return Ok(votes);
+            return Ok(vote);
         }
 
         protected override void Dispose(bool disposing)

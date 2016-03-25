@@ -5,7 +5,7 @@ using System.Web;
 
 namespace VotingAPI
 {
-    public class Votes
+    public class Vote
     {
         public int Id { get; set; }
         public Voter Voter { get; set; }

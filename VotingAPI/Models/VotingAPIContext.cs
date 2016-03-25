@@ -22,6 +22,6 @@ namespace VotingAPI.Models
         public DbSet<Candidate> Candidates { get; set; }
         public DbSet<Voter> Voters { get; set; }
 
-        public System.Data.Entity.DbSet<VotingAPI.Votes> Votes { get; set; }
+        public DbSet<Vote> Votes { get; set; }
     }
 }
