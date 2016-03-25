@@ -167,7 +167,6 @@
     <Compile Include="Candidate.cs" />
     <Compile Include="Controllers\CandidatesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VotersController.cs" />
     <Compile Include="Controllers\VotesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -180,6 +179,10 @@
     <Compile Include="Migrations\201603251351010_KateInSeed.cs" />
     <Compile Include="Migrations\201603251351010_KateInSeed.Designer.cs">
       <DependentUpon>201603251351010_KateInSeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603251738588_TokenGuid.cs" />
+    <Compile Include="Migrations\201603251738588_TokenGuid.Designer.cs">
+      <DependentUpon>201603251738588_TokenGuid.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\VotingAPIContext.cs" />
@@ -243,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603251351010_KateInSeed.resx">
       <DependentUpon>201603251351010_KateInSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603251738588_TokenGuid.resx">
+      <DependentUpon>201603251738588_TokenGuid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

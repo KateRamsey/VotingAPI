@@ -14,7 +14,7 @@ namespace VotingAPI.Migrations
 
         protected override void Seed(VotingAPI.Models.VotingAPIContext context)
         {
-            context.Voters.Add(new Voter() {Name = "Kate Ramsey", Party = "Yes Please", Token = Guid.NewGuid().ToString()});
+            context.Voters.Add(new Voter() {Name = "Kate Ramsey", Party = "Yes Please", Token = Guid.NewGuid()});
             context.SaveChanges();
         }
     }

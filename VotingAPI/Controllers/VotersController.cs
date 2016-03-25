@@ -17,17 +17,13 @@ namespace VotingAPI.Controllers
     {
         private VotingAPIContext db = new VotingAPIContext();
 
-        // GET: api/Voters
-        public IQueryable<Voter> GetVoters()
-        {
-            return db.Voters;
-        }
 
         // GET: api/Voters/5
         [ResponseType(typeof(Voter))]
-        public IHttpActionResult GetVoter(int id)
+        [Route("api/Voters/{token:guid}")]
+        public IHttpActionResult GetVoter(Guid token)
         {
-            Voter voter = db.Voters.Find(id);
+            Voter voter = db.Voters.FirstOrDefault(v => v.Token == token);
             if (voter == null)
             {
                 return NotFound();
@@ -38,27 +34,29 @@ namespace VotingAPI.Controllers
 
         // PUT: api/Voters/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutVoter(int id, Voter voter)
+        public IHttpActionResult PutVoter(Guid token, Voter voter)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != voter.Id)
+            if (token != voter.Token)
             {
                 return BadRequest();
             }
 
-            db.Entry(voter).State = EntityState.Modified;
-
+            Voter currentVoter = db.Voters.Find(voter);
+            currentVoter.Name = voter.Name;
+            currentVoter.Party = voter.Party;
+           
             try
             {
                 db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!VoterExists(id))
+                if (!VoterExists(voter.Id))
                 {
                     return NotFound();
                 }
@@ -83,7 +81,7 @@ namespace VotingAPI.Controllers
             db.Voters.Add(voter);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = voter.Id }, voter);
+            return CreatedAtRoute("DefaultApi", new { token = voter.Token }, voter);
         }
 
 
