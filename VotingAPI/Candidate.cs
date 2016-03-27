@@ -12,5 +12,7 @@ namespace VotingAPI
         public string HomeTown { get; set; }
         public string District { get; set; }
         public string Party { get; set; }
+
+        public ICollection<Vote> Votes { get; set; }
     }
 }

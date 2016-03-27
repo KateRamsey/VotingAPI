@@ -18,19 +18,35 @@ namespace VotingAPI.Controllers
         private VotingAPIContext db = new VotingAPIContext();
 
         // GET: api/Votes
-        public IQueryable<Vote> GetVotes()
+        public ICollection<VoteCount> GetVotes()
         {
-            return db.Votes;
+            ICollection<VoteCount> VC = new List<VoteCount>();
+            foreach (var c in db.Candidates)
+            {
+                VC.Add(new VoteCount() {Candidate = c, Count = 0});
+            }
+
+            foreach (var c in from v in db.Votes from c in VC where c.Candidate == v.Candidate select c)
+            {
+                c.Count++;
+            }
+
+            return VC;
         }
 
 
         // POST: api/Votes
         [ResponseType(typeof(Vote))]
-        public IHttpActionResult PostVotes(Vote vote)
+        public IHttpActionResult PostVotes(Vote vote, Guid token)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            if (token != vote.Voter.Token)
+            {
+                return BadRequest();
             }
 
             db.Votes.Add(vote);
