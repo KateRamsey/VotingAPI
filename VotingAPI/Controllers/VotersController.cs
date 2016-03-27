@@ -33,7 +33,8 @@ namespace VotingAPI.Controllers
         }
 
         // PUT: api/Voters/5
-        [ResponseType(typeof(void))]
+        [ResponseType(typeof(Voter))]
+        [Route("api/Voters/{token:guid}")]
         public IHttpActionResult PutVoter(Guid token, Voter voter)
         {
             if (!ModelState.IsValid)
@@ -46,10 +47,13 @@ namespace VotingAPI.Controllers
                 return BadRequest();
             }
 
-            Voter currentVoter = db.Voters.Find(voter);
-            currentVoter.Name = voter.Name;
-            currentVoter.Party = voter.Party;
-           
+            Voter currentVoter = db.Voters.FirstOrDefault(x => x.Token == token);
+            if (currentVoter != null)
+            {
+                currentVoter.Name = voter.Name;
+                currentVoter.Party = voter.Party;
+            }
+
             try
             {
                 db.SaveChanges();
@@ -77,6 +81,8 @@ namespace VotingAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            voter.Token = Guid.NewGuid();
 
             db.Voters.Add(voter);
             db.SaveChanges();
