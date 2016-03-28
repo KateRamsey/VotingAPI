@@ -20,8 +20,8 @@ namespace VotingAPI.Controllers
         // GET: api/Votes
         public IHttpActionResult GetVotes()
         {
-            var model2 = db.Candidates.Select(x => new {Candiate = x.Name, NumberOfVotes = x.Votes.Count()});
-            return Ok(model2);
+            var model = db.Candidates.Select(x => new {Candiate = x.Name, NumberOfVotes = x.Votes.Count()});
+            return Ok(model);
         }
 
 
@@ -47,9 +47,10 @@ namespace VotingAPI.Controllers
 
         // DELETE: api/Votes/5
         [ResponseType(typeof(Vote))]
-        public IHttpActionResult DeleteVotes(int id)
+        [Route("api/votes/{token}")]
+        public IHttpActionResult DeleteVotes(Guid token)
         {
-            Vote vote = db.Votes.Find(id);
+            Vote vote = db.Votes.SingleOrDefault(x => x.Voter.Token == token);
             if (vote == null)
             {
                 return NotFound();
