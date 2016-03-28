@@ -171,25 +171,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603251345536_Inital.cs" />
-    <Compile Include="Migrations\201603251345536_Inital.Designer.cs">
-      <DependentUpon>201603251345536_Inital.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603251351010_KateInSeed.cs" />
-    <Compile Include="Migrations\201603251351010_KateInSeed.Designer.cs">
-      <DependentUpon>201603251351010_KateInSeed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603251738588_TokenGuid.cs" />
-    <Compile Include="Migrations\201603251738588_TokenGuid.Designer.cs">
-      <DependentUpon>201603251738588_TokenGuid.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603251826086_updateSeed.cs" />
-    <Compile Include="Migrations\201603251826086_updateSeed.Designer.cs">
-      <DependentUpon>201603251826086_updateSeed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603272151092_VoteFKs.cs" />
-    <Compile Include="Migrations\201603272151092_VoteFKs.Designer.cs">
-      <DependentUpon>201603272151092_VoteFKs.cs</DependentUpon>
+    <Compile Include="Migrations\201603281356279_NewInitial.cs" />
+    <Compile Include="Migrations\201603281356279_NewInitial.Designer.cs">
+      <DependentUpon>201603281356279_NewInitial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\VotingAPIContext.cs" />
@@ -249,29 +233,17 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603251345536_Inital.resx">
-      <DependentUpon>201603251345536_Inital.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603251351010_KateInSeed.resx">
-      <DependentUpon>201603251351010_KateInSeed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603251738588_TokenGuid.resx">
-      <DependentUpon>201603251738588_TokenGuid.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603251826086_updateSeed.resx">
-      <DependentUpon>201603251826086_updateSeed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603272151092_VoteFKs.resx">
-      <DependentUpon>201603272151092_VoteFKs.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603281356279_NewInitial.resx">
+      <DependentUpon>201603281356279_NewInitial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
