@@ -26,10 +26,10 @@ namespace VotingAPI.Controllers
                 VC.Add(new VoteCount() {Candidate = c, Count = 0});
             }
 
-            foreach (var c in from v in db.Votes from c in VC where c.Candidate == v.Candidate select c)
-            {
-                c.Count++;
-            }
+            //foreach (var c in from v in db.Votes from c in VC where c.Candidate == v.Candidate select c)
+            //{
+            //    c.Count++;
+            //}
 
             return VC;
         }

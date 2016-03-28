@@ -7,6 +7,10 @@ namespace VotingAPI
 {
     public class Candidate
     {
+        public Candidate()
+        {
+            Votes = new List<Vote>();
+        }
         public int Id { get; set; }
         public string Name { get; set; }
         public string HomeTown { get; set; }

@@ -29,7 +29,7 @@ namespace VotingAPI.Migrations
 
                 Vote krVote = new Vote() { Candidate = joe, Voter = kr };
                 Vote jtVote = new Vote() { Candidate = tom, Voter = jt };
-                Vote stVote = new Vote() { Candidate = bob, Voter = st };
+                Vote stVote = new Vote() { Candidate = scott, Voter = st };
 
 
                 context.Voters.Add(kr);
