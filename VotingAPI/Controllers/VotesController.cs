@@ -27,22 +27,39 @@ namespace VotingAPI.Controllers
 
         // POST: api/Votes
         [ResponseType(typeof(Vote))]
-        public IHttpActionResult PostVotes(Vote vote, Guid token)
+        [Route("api/votes/{token}")]
+        [HttpPost]
+        public IHttpActionResult PostVotes(Guid token, VoteCreateVM newVote)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (token != vote.Voter.Token)
+            Voter v = db.Voters.Find(newVote.VoterId);
+            Candidate c  = db.Candidates.Find(newVote.CandidateId);
+
+            if (v == null || c ==null)
             {
-                return BadRequest();
+                return BadRequest("Voter or candidate not found.");
             }
 
-            db.Votes.Add(vote);
+            if (token != v.Token)
+            {
+                return BadRequest("Not a valid voter token");
+            }
+
+            if (v.Votes.Any())
+            {
+                return BadRequest("You have already voted, thanks");
+            }
+
+            var vote = new Vote() {Candidate = c};
+            v.Votes.Add(vote);
+
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = vote.Id }, vote);
+            return Ok(vote);
         }
 
         // DELETE: api/Votes/5
