@@ -10,8 +10,8 @@ namespace VotingAPI
     {
         public int Id { get; set; }
         [Required]
-        public Voter Voter { get; set; }
+        public virtual Voter Voter { get; set; }
         [Required]
-        public Candidate Candidate { get; set; }
+        public virtual Candidate Candidate { get; set; }
     }
 }

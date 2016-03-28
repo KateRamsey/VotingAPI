@@ -18,20 +18,10 @@ namespace VotingAPI.Controllers
         private VotingAPIContext db = new VotingAPIContext();
 
         // GET: api/Votes
-        public ICollection<VoteCount> GetVotes()
+        public IHttpActionResult GetVotes()
         {
-            ICollection<VoteCount> VC = new List<VoteCount>();
-            foreach (var c in db.Candidates)
-            {
-                VC.Add(new VoteCount() {Candidate = c, Count = 0});
-            }
-
-            //foreach (var c in from v in db.Votes from c in VC where c.Candidate == v.Candidate select c)
-            //{
-            //    c.Count++;
-            //}
-
-            return VC;
+            var model2 = db.Candidates.Select(x => new {Candiate = x.Name, NumberOfVotes = x.Votes.Count()});
+            return Ok(model2);
         }
 
 

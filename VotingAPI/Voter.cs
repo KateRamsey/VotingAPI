@@ -14,6 +14,6 @@ namespace VotingAPI
         public string Party { get; set; }
         public Guid Token { get; set; }
 
-        public virtual List<Vote> Votes { get; set; }
+        public virtual ICollection<Vote> Votes { get; set; } = new List<Vote>();
     }
 }

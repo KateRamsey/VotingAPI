@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace VotingAPI
 {
@@ -10,7 +12,8 @@ namespace VotingAPI
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            
             // Web API routes
             config.MapHttpAttributeRoutes();
 
